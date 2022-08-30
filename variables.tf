@@ -50,3 +50,9 @@ variable "image_name" {
   description = "The image of fargate"
   default = "nginx"
 }
+
+variable "key_name" {
+  type = string
+  description = "The image of fargate"
+  default = "tm-piar"
+}

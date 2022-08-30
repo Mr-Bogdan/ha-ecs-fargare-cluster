@@ -31,20 +31,20 @@ resource "aws_security_group" "ec2_security_group" {
   }
 }
 
-resource "local_file" "cloud_pem" { 
-  filename = "/home/bohdan/devops/techmagic/Homework5/clear_project/ec2-efs-access-key.pem"
-  content = tls_private_key.key.private_key_pem
-}
+# resource "local_file" "cloud_pem" { 
+#   filename = "/home/bohdan/devops/techmagic/Homework5/clear_project/ec2-efs-access-key.pem"
+#   content = tls_private_key.key.private_key_pem
+# }
 
-resource "tls_private_key" "key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
+# resource "tls_private_key" "key" {
+#   algorithm = "RSA"
+#   rsa_bits  = 4096
+# }
 
-resource "aws_key_pair" "generated_key" {
-  key_name   = "ec2-efs-access-key"
-  public_key = tls_private_key.key.public_key_openssh
-}
+# resource "aws_key_pair" "generated_key" {
+#   key_name   = "ec2-efs-access-key"
+#   public_key = tls_private_key.key.public_key_openssh
+# }
 
 
 module "ec2-instance-with-efs" {
@@ -55,7 +55,7 @@ module "ec2-instance-with-efs" {
 
   ami                    = "ami-0e2031728ef69a466"
   instance_type          = "t2.micro"
-  key_name               = aws_key_pair.generated_key.key_name
+  key_name               = var.key_name
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id, aws_security_group.ec2_efs_sg.id]
   subnet_id              = module.ecs_vpc.public_subnets[0]
@@ -73,10 +73,11 @@ resource "null_resource" "configure_nfs" {
   connection {
     type     = "ssh"
     user     = "ec2-user"
-    private_key = tls_private_key.key.private_key_pem
+    private_key = file("/home/bohdan/Downloads/tm-piar.pem")
     host     = module.ec2-instance-with-efs.public_ip
   }
   provisioner "remote-exec" {
+    on_failure = continue
     inline = [
       "echo ${module.efs.efs_endpoint}",
       "ls -la",
