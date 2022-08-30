@@ -77,7 +77,6 @@ resource "null_resource" "configure_nfs" {
     host     = module.ec2-instance-with-efs.public_ip
   }
   provisioner "remote-exec" {
-    on_failure = continue
     inline = [
       "echo ${module.efs.efs_endpoint}",
       "ls -la",
@@ -87,7 +86,8 @@ resource "null_resource" "configure_nfs" {
       "sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${module.efs.efs_endpoint}:/ mount-point",
       "ls",
       "sudo chown -R ec2-user.ec2-user mount-point",      
-      "cd mount-point"
+      "cd mount-point",
+      "echo '<html> <head> </head> <body>    <h1>Hello World</h1>  <h1>Hello World2</h1> </body></html>' > index.html"
     ]
   }
 }
