@@ -73,7 +73,7 @@ resource "null_resource" "configure_nfs" {
   connection {
     type     = "ssh"
     user     = "ec2-user"
-    private_key = file("/home/bohdan/Downloads/tm-piar.pem")
+    private_key = file("./tm-piar.pem")
     host     = module.ec2-instance-with-efs.public_ip
   }
   provisioner "remote-exec" {
