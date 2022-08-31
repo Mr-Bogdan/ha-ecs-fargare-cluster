@@ -87,7 +87,7 @@ resource "null_resource" "configure_nfs" {
       "ls",
       "sudo chown -R ec2-user.ec2-user mount-point",      
       "cd mount-point",
-      "echo '<html> <head>Static page</head> <body> <h1>Hello World</h1> <h1>Hello World2</h1> </body> </html>' > index.html"
+      "echo '<html> <head>Static</head> <body> <h1>Hello World</h1> <h1>Hello World2</h1> </body> </html>' > index.html"
     ]
   }
 }
