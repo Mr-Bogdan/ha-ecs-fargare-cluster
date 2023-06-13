@@ -1,0 +1,22 @@
+name: Extract PR Labels
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  extract_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Extract labels
+        id: extract
+        run: echo "::set-output name=labels::${{ steps.extract.outputs.labels }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+      - name: Display labels
+        run: echo "Labels: ${{ steps.extract.outputs.labels }}"
+
