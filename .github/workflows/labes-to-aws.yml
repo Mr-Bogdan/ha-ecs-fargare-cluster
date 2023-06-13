@@ -18,6 +18,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
-      - name: Display labels
-        run: echo "Labels: ${{ steps.extract.outputs.labels }}"
+#       - name: Display labels
+#         run: echo "Labels: ${{ steps.extract.outputs.labels }}"
 
