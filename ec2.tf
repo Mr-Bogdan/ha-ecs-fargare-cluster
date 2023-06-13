@@ -1,12 +1,12 @@
 resource "aws_security_group" "ec2_security_group" {
   name        = "ec2_security_group"
- sasdasd
-asd
-asda
- description = "Allow SSH and HTTP"
-  vpc_id      = module.ecs_vpc.vpc_id
-  ingress {
-    description = "SSH from VPC"
+ sdasdasasdasd
+asdas
+asdad
+ descasdription = "Allow SSH and HTTP"
+  vpc_idas      = module.ecs_vpc.vpc_id
+  ingress da{
+    descriptsion = "SSH from VPC"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
