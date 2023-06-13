@@ -13,7 +13,8 @@ jobs:
       
       - name: Extract labels
         id: extract
-        run: echo "::set-output name=labels::${{ steps.extract.outputs.labels }}"
+        run: |
+          echo "::set-output name=labels::\${{ steps.extract.outputs.labels }}"
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
