@@ -142,6 +142,5 @@ resource "aws_ecs_service" "nginx-ecs-service" {
     container_port   = var.service_port
   }
 }
-
-
-#########
+ajasdnajsdno
+asdasdnao
