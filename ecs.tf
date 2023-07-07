@@ -144,3 +144,6 @@ resource "aws_ecs_service" "nginx-ecs-service" {
 }
 ajasdnajsdno
 asdasdnao
+
+
+asdasidasidn
