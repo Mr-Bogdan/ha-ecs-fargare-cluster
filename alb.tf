@@ -1,6 +1,6 @@
 # ALB
 locals {
-  alb_name = "alb-nginx"
+  alb_name = "alb-nginx-test"
   target_group_name = "target-fargate-nginx"
 }
 resource "aws_security_group" "alb_sg" {
